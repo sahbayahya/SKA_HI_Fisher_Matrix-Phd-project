@@ -6,12 +6,42 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		8E5A881A1A8A307800BA637B /* plot_Err_Da.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = plot_Err_Da.py; sourceTree = "<group>"; };
+		8E5A881C1A8A307800BA637B /* FoM_all_no_prior.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = FoM_all_no_prior.py; sourceTree = "<group>"; };
+		8E5A881D1A8A307800BA637B /* FoM_all_.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = FoM_all_.py; sourceTree = "<group>"; };
+		8E5A88201A8A307800BA637B /* fit_Euclid.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = fit_Euclid.py; sourceTree = "<group>"; };
+		8E5A88231A8A449400BA637B /* constants.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = constants.py; sourceTree = "<group>"; };
+		8E5A88241A8A456500BA637B /* make.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = make.py; sourceTree = "<group>"; };
+		8EAF8A5C1A8A9B39001DC967 /* test.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test.py; sourceTree = "<group>"; };
+		8EAF8A5D1A8A9CC4001DC967 /* functions.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = functions.py; sourceTree = "<group>"; };
+		8EAF8A601A8CDBF0001DC967 /* plot_Err_H.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = plot_Err_H.py; sourceTree = "<group>"; };
+		8EC001121A9B8BC5008F5AB5 /* FoM_all_with_prior.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = FoM_all_with_prior.py; sourceTree = "<group>"; };
+		8EC001131AA09137008F5AB5 /* fit_BOSS.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = fit_BOSS.py; sourceTree = "<group>"; };
+		8EC001141AA3019D008F5AB5 /* plot_Ok_vs_w.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = plot_Ok_vs_w.py; sourceTree = "<group>"; };
+		8EC001151AA3019D008F5AB5 /* plot_w_vs_wa.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = plot_w_vs_wa.py; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		8E5A880F1A8A2F3300BA637B = {
 			isa = PBXGroup;
 			children = (
+				8E5A88241A8A456500BA637B /* make.py */,
+				8EAF8A5C1A8A9B39001DC967 /* test.py */,
+				8E5A881C1A8A307800BA637B /* FoM_all_no_prior.py */,
+				8EC001121A9B8BC5008F5AB5 /* FoM_all_with_prior.py */,
+				8E5A881D1A8A307800BA637B /* FoM_all_.py */,
+				8EAF8A5D1A8A9CC4001DC967 /* functions.py */,
+				8E5A88231A8A449400BA637B /* constants.py */,
+				8E5A88201A8A307800BA637B /* fit_Euclid.py */,
+				8EC001131AA09137008F5AB5 /* fit_BOSS.py */,
+				8EAF8A601A8CDBF0001DC967 /* plot_Err_H.py */,
+				8E5A881A1A8A307800BA637B /* plot_Err_Da.py */,
+				8EC001141AA3019D008F5AB5 /* plot_Ok_vs_w.py */,
+				8EC001151AA3019D008F5AB5 /* plot_w_vs_wa.py */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 /* End PBXGroup section */
 
@@ -22,7 +52,8 @@
 			buildConfigurationList = 8E5A88171A8A2F3300BA637B /* Build configuration list for PBXLegacyTarget "SKA_HI_Fisher_Matrix" */;
 			buildPhases = (
 			);
-			buildToolPath = /usr/local/bin/python;
+			buildToolPath = /Users/sahba/anaconda/bin/ipython;
+			buildWorkingDirectory = /Users/sahba/Dropbox/SKA_Survey/SKA_HI_Fisher_Matrix;
 			dependencies = (
 			);
 			name = SKA_HI_Fisher_Matrix;
@@ -174,6 +205,7 @@
 				8E5A88191A8A2F3300BA637B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

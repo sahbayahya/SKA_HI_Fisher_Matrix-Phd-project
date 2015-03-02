@@ -1,0 +1,138 @@
+import scipy.optimize as opt
+from pylab import *
+import numpy as np
+import cosmolopy.constants as cc
+import cosmolopy.distance as cd
+import cosmolopy.perturbation as cp
+from scipy.integrate import quad
+
+def dvdz(z):
+	''' this function is to calculate the diff comoving volume 
+	the results are given in units of Mpc^3.
+	to use this function you need to install cosmolopy.
+	Also note that the cosmological 
+	parameters are  Planck best-fit parameters.
+	'''
+
+	cosmo = {'omega_M_0':        0.316,
+			 'omega_lambda_0':   0.684,
+    			'omega_b_0':        0.049,
+    			'N_eff':            3.046,
+   			 'h':                0.67,
+   			 'ns':               0.962,
+   			 'sigma_8':          0.834,
+    			'gamma':            0.55,
+   			 'w0':               -1.,
+    			'wa':               0.,
+   			 'sigma_nl':         7.}
+	cosmo = cd.set_omega_k_0(cosmo)
+	Vc = cd.diff_comoving_volume(z, **cosmo)
+	return  Vc
+def V_sur(zmin, zmax,area):
+	''' This function to calculate the survey volume 
+	The units will be Mpc^3 per deg^2 
+	to convert to Mpc^3/h^3 you need to multiply by h^3
+	'''
+	vol = quad(dvdz, zmin, zmax)[0]	
+	vol = area*(3.1415/180.)**2.*vol
+	return vol
+#====================================================================================================================
+def dndz_(p1, p2, p3,x):
+	''' This function is the function we think it will be easy
+	to fit its parameters to our data
+	'''
+	w=10.**p1*  x**p2  * np.exp(-p3*x)
+	print w.size
+	return w
+	
+	
+
+def residuals_dndz(p1, p2, p3,x,y):
+	'''The purpose of this function is finding the 
+	difference between the theortical and the simulated data point 
+	at specific point x (or redshift).
+	'''
+	w=10.**p1* x**(p2 ) *  np.exp(-p3*x)
+	err=w-y
+	err=err**2
+	B=sum(err)
+	return B
+#==================================================================================================================
+''' '--------------------------------------------------------------------------------------------------------------------------'
+This function is the function we think it will be easy
+to fit its parameters to our data
+'--------------------------------------------------------------------------------------------------------------------------'
+'''
+def bias_(p4, p5,x):
+   w=p4*np.exp(p5*x)
+   print w.size
+   return w
+''''--------------------------------------------------------------------------------------------------------------------------'
+The purpose of this function is finding the 
+difference between the theortical and the simulated data point 
+at specific point x (or redshift).
+'--------------------------------------------------------------------------------------------------------------------------'
+'''
+def residuals_bias(p4, p5,x,y):
+   w=p4* np.exp(p5*x)
+   err=w-y
+   err=err**2
+   B=sum(err)
+   return B
+   
+def k_max(z,k_NL):
+	cosmo = {'omega_M_0':        0.316,
+			 'omega_lambda_0':   0.684,
+    			'omega_b_0':        0.049,
+    			'N_eff':            3.046,
+   			 'h':                0.67,
+   			 'ns':               0.962,
+   			 'sigma_8':          0.834,
+    			'gamma':            0.55,
+   			 'w0':               -1.,
+    			'wa':               0.,
+   			 'sigma_nl':         7.}
+  	kmax = k_NL*(1.+z)**(2./(2.+cosmo['ns']))
+    	return kmax
+
+C = 3e5 # Speed of light, km/s
+NU_LINE = 1.420 # HI emxission line freq. in GHz
+
+if  __name__=='__main__':
+	
+	 sarea = [100, 250, 500, 750, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 15000, 17000, 20000, 22000, 25000, 27000 ,30000]
+	 z_c = [] ; zmin = [] ; zmax =[]; nz = [] ; bz = []
+	 for i in range(len(sarea)):
+	 	(z_c, zmin, zmax, nz, bz) = (np.loadtxt('nz_SKA1-ref_800_1300_'+str(sarea[i])+'.dat' ,  unpack=True))
+	 	
+	 	#========V survey [Mpc^3 h^-3]=================================
+		h= 0.67
+		Vsurvey= []
+		for j in range(len(z_c)):
+          		Vsurvey.append(V_sur(zmin[j],zmax[j], sarea[i])*(h**3))
+          		
+	          
+	        #========  kmin and kmax ====================================
+		kmin = linspace(1e-3, 1e-3, len(z_c))
+		k_NL = 0.2
+		kmax  = k_max(z_c, k_NL)
+                
+		#======= Save the resutls======================================
+	
+		data= concatenate((reshape( z_c,(len(z_c),1)) , reshape(nz,(len(z_c),1)),reshape(bz,(len(z_c),1)),reshape(kmax,(len(z_c),1)),reshape(Vsurvey,(len(z_c),1)),reshape(dvdz(z_c),(len(z_c),1))),axis=1)
+		savetxt('input_nz_SKA1_ref_800_1300_'+str(sarea[i])+'ref.txt' , data)
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
