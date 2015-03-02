@@ -1,0 +1,19 @@
+# Cosmological Constraints from Gravitational Lens Time Delays
+# Optimistic Stage IV Cosntraints (Statistical Uncertainties Only)
+#
+# Fisher matrix calculated by Coe & Moustakas (2009)
+# Cosmological Constraints from Gravitational Lens Time Delays
+# http://arxiv.org/abs/0906.4108
+#
+#  1 h  
+#  2 Ode
+#  3 Ok 
+#  4 w0 
+#  5 wa 
+#
+#    h          Ode          Ok          w0        wa     
+ 42165.8847  -1548.4418  -3752.6634  3847.9465  103.6964
+ -1548.4418     74.7910    170.0852  -160.1720   -7.1415
+ -3752.6634    170.0852    392.3132  -377.0766  -15.2071
+  3847.9465   -160.1720   -377.0766   374.0329   12.9465
+   103.6964     -7.1415    -15.2071    12.9465    0.8796

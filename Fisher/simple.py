@@ -1,0 +1,38 @@
+from CLtools import *
+import Fisher
+from matplotlib import *
+from pylab import *
+reload(Fisher)
+
+expcolors = {}
+expcolors['CL'] = reds
+expcolors['SN'] = yellows
+expcolors['BAO'] = purples
+expcolors['WL'] = greens
+stage = 4
+
+xvar, yvar = 'w0 wa'.split(' ')
+xo, yo = -1, 0  # Best fit w0, wa
+alpha = 0.9
+
+def expplot(exp1):
+    F = Fisher.Fisher(exp1+`stage`)  # Stage III / IV
+    F.rename()  # parameters renamed to nicknames (w0, wa, etc.)
+    dx, dy, p = F.dxdyp(xvar, yvar)
+    plotellsp(xo, yo, dx, dy, p, colors=expcolors[exp1], alpha=alpha)
+
+#killplot()  # Kick start pylab interactive mode
+
+#clf()
+for exp1 in 'SN BAO CL WL'.split(' '):
+    expplot(exp1)
+
+xlim(-2,0)
+ymax = 5
+ylim(-ymax,ymax)
+finishup(xo, yo, xvar, yvar, c='k', dc='w', sh=0)
+print 'You should see a plot which with ellipses of different colors.'
+print '(Looks like a big X at this scale.)'
+print 'KILL PLOT WINDOW TO TERMINATE'
+show()
+#pause()

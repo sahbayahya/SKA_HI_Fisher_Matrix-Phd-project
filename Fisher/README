@@ -1,0 +1,79 @@
+Fisher.py (Beta release 2)
+Fisher Matrix manipulation; Confidence Contour plotting
+Dan Coe (coe@caltech.edu)
+
+See accompanying paper (Coe 2009):
+Fisher Matrices and Confidence Ellipses: A Quick Start Guide and Software
+http://arxiv.org/abs/0906.4123
+
+used in Coe & Moustakas (2009):
+Cosmological Constraints from Gravitational Lens Time Delays
+http://arxiv.org/abs/0906.4108
+
+---------------------------------
+
+Requirements:
+
+Python, including:
+- Numpy
+- Matplotlib
+
+That should be it.  If you have any trouble, please let me know!
+
+---------------------------------
+
+Setup:
+
+Run these commands first in your terminal.  (You may want to add these to your .cshrc)
+
+setenv NUMERIX numpy
+setenv FISHERPATH /Users/coe/Fisher (or wherever you put the software)
+setenv PYTHONPATH {$PYTHONPATH}:{$FISHERPATH}
+
+---------------------------------
+
+TEST PROGRAMS (try running these):
+python simple.py
+python plotexps.py
+
+Main Engines:
+Fisher.py -- Fisher Matrix manipulation
+CLtools.py -- Confidence Contour plotting, specializing in 1- & 2-sigma contours/ellipses
+
+Helper programs:
+coetools.py
+MLab_coe.py
+coeplot2.py
+coeio.py
+and others
+
+---------------------------------
+
+Dark Energy Task Force Fisher matrices
+
+In data/ I include some of the Fisher matrices 
+calculated by the Dark Energy Task Force (Albrecht06).
+These are available in the standalone download of the DETFast software:
+
+http://www.physics.ucdavis.edu/DETFast/
+
+---------------------------------
+
+Documentation:
+I haven't written any, but if there's enough demand I will.
+Feel free to contact me with questions and/or comments: coe@caltech.edu
+
+---------------------------------
+
+Credits:
+The Dark Energy Task Force for providing their Fisher matrices in DETFast.
+Jason Dick and Lloyd Knox for answering my questions about DETFast.
+Michal Spalinski for testing the Fisher.py installation and providing instructions I'd neglected.
+
+---------------------------------
+
+Revisions:
+
+beta releases:
+2 (7/12/09) -- Added FISHERPATH environmental variable
+1 (7/6/09)

@@ -1,0 +1,45 @@
+from CLtools import *
+import Fisher
+from pylab import *
+reload(Fisher)
+#====================================================================================
+def expplot(exp1, dx, dy, p, alpha, fill, lw):
+    F = Fisher.Fisher(exp1+`stage`)  # Stage III / IV
+    F.rename()  # parameters renamed to nicknames (w0, wa, etc.)
+    print dx, dy , p
+    plotellsp(xo, yo, dx, dy, p, colors=expcolors[exp1], alpha=alpha, fill=fill, lw=lw)
+    
+expcolors = {}    
+expcolors['SN'] = reds
+expcolors['BAO'] = lightblues
+expcolors['WL'] =  lightyellows
+stage = 4
+
+
+xo, yo =  0.0 , -1 # Best fit w0, wa
+
+#************************************** Values For The SKA + planck priors***************************************************************
+# w vs ok 150mJy_diff_bins
+ok_150 =0.0109198717897 ; dw_150=  0.414272922179 ; dwok_150 =0.0561459286759 ; p_150 = dwok_150/(dw_150 * ok_150)
+#************************************* Values For The SKA+ plank priors  ********************************************************
+# w vs ok 5.4mJy_diff_bins
+ok_5 = 0.0469348; dw_5 =0.0036487 ; dwok_5 = 0.000106800422838; p_5=  dwok_5 /(ok_5*dw_5)
+#************************************** Values For Euclid + planck priors***************************************************************
+# w vs ok Euclid_diff_bins
+ok_Euclid = 0.0659530 ; dw_Euclid=0.0094467 ; dwok_Euclid=0.00099930672273 ; p_Euclid = dwok_Euclid/(dw_Euclid* ok_Euclid)
+from matplotlib.pyplot import *
+ax = subplot(1,1,1)
+exp2 = 'BAO'
+p02 = expplot(exp2, ok_150, dw_150 , p_150 ,alpha= 1, fill = 1, lw = 1)
+exp3 = 'WL'
+p03 =expplot(exp3, dw_Euclid, ok_Euclid, p_Euclid ,alpha= 1, fill = 1, lw = 1)
+exp1 = 'SN'
+p01 =expplot(exp1, dw_5, ok_5, p_5 ,alpha= 1, fill = 1, lw = 1)
+plot(xo, yo, 'kx')
+xlabel('$\Omega_K$', fontsize= 18)
+ylabel('$w_0$', fontsize= 18)
+xmax = 0.04
+#xlim(-xmax,xmax)
+#ylim(-1.2, -0.8)
+savefig("output_ellipse_w0_OK.pdf")
+show()
